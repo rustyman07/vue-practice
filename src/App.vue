@@ -6,7 +6,21 @@ export default {
   // and will be exposed on `this`.
   data() {
     return {
-      count: 0
+      count: 0,
+      activePage:0,
+      heroes :['Phantom assasin','traxex'],
+      isShow: true,
+      pages:[{
+        url: "index.html",
+        title: "HOME"
+      },
+      {
+        url: "about.html",
+        title: "ABOUT"
+      }
+      
+      
+      ]
     }
   },
 
@@ -15,6 +29,9 @@ export default {
   methods: {
     increment() {
       this.count++
+    },
+    toggle(){
+      this.isShow = !this.isShow;
     }
   },
 
@@ -28,7 +45,15 @@ export default {
 </script>
 
 <template>
-  <button @click="increment">Count is: {{ count }}</button>
+  <ul >
+ <li v-for = "(page,index) in pages" key = "index" >
+
+  <a :href="page.url">{{page.title}}</a>
+ </li>
+  </ul>
+  <div  v-if= "isShow" > hello </div>
+
+  <button @click="toggle">Toggle</button>
  
 
 </template>
